@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   ADITYA MADHOK — design tokens
+   A light, editorial interface built on white space.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --background: #ffffff;
+  --surface: #faf9f7;
+  --elevated: #f4f2ee;
+  --panel: #faf9f7;
+
+  /* Text */
+  --foreground: #151515;
+  --muted-foreground: #5c5c5c;
+  --subtle: #737373;
+
+  /* Accents */
+  --amber: #a15c1a;
+  --cyan: #0f766e;
+  --violet: #5b4bdb;
+
+  --primary: #151515;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f2ee;
+  --secondary-foreground: #151515;
+  --accent: #0f766e;
+  --accent-foreground: #ffffff;
+  --muted: #f4f2ee;
+  --muted-foreground: #5c5c5c;
+
+  --card: #ffffff;
+  --card-foreground: #151515;
+  --popover: #ffffff;
+  --popover-foreground: #151515;
+
+  --border: #e7e4de;
+  --input: #e7e4de;
+  --ring: #0f766e;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+
+  --chart-1: #a15c1a;
+  --chart-2: #0f766e;
+  --chart-3: #5b4bdb;
+  --chart-4: #151515;
+  --chart-5: #8b8b8b;
+
+  --radius: 0.75rem;
+
+  --sidebar: #faf9f7;
+  --sidebar-foreground: #151515;
+  --sidebar-primary: #151515;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f2ee;
+  --sidebar-accent-foreground: #151515;
+  --sidebar-border: #e7e4de;
+  --sidebar-ring: #0f766e;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  --background: #ffffff;
+  --color-background: var(--background);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-panel: var(--panel);
+  --color-subtle: var(--subtle);
+
+  --color-amber: var(--amber);
+  --color-cyan: var(--cyan);
+  --color-violet: var(--violet);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--amber) 20%, transparent);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Quiet scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d9d5ce;
+    border-radius: 99px;
+    border: 3px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c4bfb6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Editorial section label — compact, not shouting */
+  .label-technical {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  .label-technical-accent {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  .hairline {
+    border-color: rgba(21, 21, 21, 0.08);
+  }
+
+  /* Cards are quiet surfaces, not glowing panels. */
+  .panel-elevated {
+    background: #ffffff;
+    border: 1px solid rgba(21, 21, 21, 0.08);
+    box-shadow: 0 1px 2px rgba(21, 21, 21, 0.03);
+  }
+
+  .edge-amber {
+    box-shadow: 0 0 0 1px rgba(161, 92, 26, 0.28);
+  }
+
+  .edge-cyan {
+    box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.24);
+  }
+
+  .shimmer-text {
+    background: none;
+    color: var(--foreground);
+  }
+}
+
+/* ==========================================================================
+   Keyframes — restrained, purposeful
+   ========================================================================== */
+
+@keyframes blockverse-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes blockverse-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes blockverse-sweep {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(210%);
+  }
+}
+
+@keyframes blockverse-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-drift {
+  animation: blockverse-drift 9s ease-in-out infinite;
+}
+.animate-pulse-soft {
+  animation: blockverse-pulse 5s ease-in-out infinite;
+}
+.animate-sweep {
+  animation: blockverse-sweep 5.5s linear infinite;
+}
+.animate-fade-up {
+  animation: blockverse-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
